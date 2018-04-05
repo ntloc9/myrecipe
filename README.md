@@ -22,3 +22,18 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Recipe - 
+
+- recipe should be validate
+- name should be present
+- description should be present
+- chef_id should be present **
+- maximum length for name and description, may be minimum for description
+
+Description
+- chefname should be present
+- email should be present
+- size restrictions on email and chefname
+- email address should be valid format
+- email should be unique, case insensitive 
