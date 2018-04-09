@@ -11,7 +11,7 @@
         <h3><%= link_to recipe.name, recipe_path(recipe) %></h4>
         <p><%= truncate(recipe.description,length: 150) %></p>
         <p>
-            <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small></span>
+            <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago | Updated <%= time_ago_in_words(recipe.updated_at) %> ago</small></span>
         </p>
     </div>
 </div>
