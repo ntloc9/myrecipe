@@ -7,4 +7,6 @@ class Chef < ApplicationRecord
                                 uniqueness: { case_sensitive: false } #case insensitive là chữ hoa chữ thường ko phân biệt
                                 
     has_many :recipes
+    has_secure_password
+    validates :password, presence: true, length: { minimum: 5 }
 end
