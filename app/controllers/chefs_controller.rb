@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-    before_action :set_chef, only: [:edit, :update, :show, :destroy]
+    before_action :set_chef, only: [:edit, :update, :show, :destroy] #chỉ chạy set_chef với edit update show destroy
     before_action :require_same_user, only: [:edit, :update, :destroy]
     def index
         @chefs = Chef.paginate(page: params[:page], per_page: 5)
@@ -41,19 +41,18 @@ class ChefsController < ApplicationController
        flash[:danger] = "Chef and all recipes has been deleted"
        redirect_to chefs_path
     end
-    
 
     private
     def set_chef
-        @chef = Chef.find(params[:id])
+        @chef = Chef.find(params[:id])  # gán thông tin chef tìm theo chef_id
     end
     
     def chef_params
-        params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)     
+        params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)      #cho phép lấy thông tin của chef
     end
             
     def require_same_user
-        if current_chef != @chef
+        if current_chef != @chef and !current_chef.admin?
             flash[:danger] = "You can only edit or delete your profile"
             redirect_to chefs_path
         end
