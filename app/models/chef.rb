@@ -6,7 +6,8 @@ class Chef < ApplicationRecord
                                 format: { with: VALID_EMAIL_REGEX },
                                 uniqueness: { case_sensitive: false } #case insensitive là chữ hoa chữ thường ko phân biệt
                                 
-    has_many :recipes, dependent: :destroy
+    has_many :recipes, dependent: :destroy           #nếu chef destroy thì recipes cũng destroy theo
     has_secure_password
     validates :password, presence: true, length: { minimum: 5 }
+    has_many :comments, dependent: :destroy         #nếu chef destroy thì comments cũng destroy theo
 end
