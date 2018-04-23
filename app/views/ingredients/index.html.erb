@@ -1,0 +1,19 @@
+<%=render 'share/page_title', title: "Listing all Ingredients"%>
+
+<div align= "center">
+    <%= will_paginate %>
+    <% @ingredients.each do |ing| %>
+        <ul class="listing">
+            <div class="row">
+                <div class="well col-md-4 col-md-offset-4">
+                    <li class= "chef-title"> <%=link_to ing.name.capitalize, ingredient_path(ing) %></li>
+                    <li><small><%= pluralize(ing.recipe.count, "recipe") if ing.recipe %></small></li>
+                    <% if logged_in? && current_chef.admin? %>
+                        <li><%= link_to "Update ingredient", edit_ingredient_path(ing)%> || <%= link_to "Delete ingredient", ingredient_path(ing), method: :delete, data: {confirm: "Are you want to delete the chef and all associate recipe"} %></li>
+                    <% end %>
+                </div>
+            </div>
+        </ul>
+    <%end%>
+    <%= will_paginate %>
+</div>

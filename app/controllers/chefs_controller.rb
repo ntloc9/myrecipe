@@ -24,8 +24,8 @@ class ChefsController < ApplicationController
     def create
         @chef = Chef.new(chef_params)
         if @chef.save
-            session[:chef_id] = @chef.id
-            flash[:success] = "Welcome #{@chef.chefname} to myrecipe app"
+            session[:chef_id] = @chef.id                                    # lưu phần đăng nhập hiện tại là khi mới tạo tài khoản mới, nếu không sẽ vẫn là tài khoản trc đó.
+            flash[:success] = "Welcome #{@chef.chefname} to myrecipe app"   
             redirect_to chef_path(@chef)
         else 
             render 'new'
